@@ -44,5 +44,18 @@ cursor.execute('UPDATE alunos SET idade = "32" WHERE nome = "Camila Oliveira"')
 #b) Remova um aluno pelo seu ID.  
 cursor.execute('DELETE FROM alunos where Id=1') 
 
+#5. Criar uma Tabela e Inserir Dados
+#Crie uma tabela chamada "clientes" com os campos: id (chave primária), nome (texto), idade (inteiro) e saldo (float). Insira alguns registros de clientes na tabela.
+cursor.execute('CREATE TABLE clientes (Id INT, Nome VARCHAR(100), Idade INT (100), Saldo FLOAT(100) );')
+cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(1,"Roberto Lara","25","1250,00" )')
+cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(2,"Peterson Alves","45","12,01" )')
+cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(3,"Tiago Iork","24","188,90" )')
+cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(4,"Leandro Hasun","58","670,40" )')
+cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(5,"Daniel Oliveira","36","726,70" )')
+cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(6,"Fernando ALmeida","47","5698,65" )')
+cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(7,"Geraldo Rodrigues","28","56,98" )')
+cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(8,"Laercio Santos","71","93,04" )')
+cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(9,"Lucas Morais","48","23,05" )')
+cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(10,"Juliano Silveira","64","81250,00" )')
 conexao.commit()
 conexao.close()
