@@ -82,5 +82,12 @@ dados = cursor.execute('SELECT COUNT(*) AS qtd_clientes_saldo_acima_1000 FROM cl
 qtd_clientes_saldo_acima_1000 = cursor.fetchone()[0]
 print("Quantidade de clientes com saldo acima de 1000:", qtd_clientes_saldo_acima_1000)
 
+#7. Atualização e Remoção com Condições
+#a) Atualize o saldo de um cliente específico.
+cursor.execute('UPDATE clientes SET saldo = "10,00" WHERE nome = "Laercio Santos"')
+
+#b) Remova um cliente pelo seu ID.
+cursor.execute('DELETE FROM clientes where Id=4')
+
 conexao.commit()
 conexao.close()
