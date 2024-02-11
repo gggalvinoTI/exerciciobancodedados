@@ -46,16 +46,41 @@ cursor.execute('DELETE FROM alunos where Id=1')
 
 #5. Criar uma Tabela e Inserir Dados
 #Crie uma tabela chamada "clientes" com os campos: id (chave primária), nome (texto), idade (inteiro) e saldo (float). Insira alguns registros de clientes na tabela.
-cursor.execute('CREATE TABLE clientes (Id INT, Nome VARCHAR(100), Idade INT (100), Saldo FLOAT(100) );')
-cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(1,"Roberto Lara","25","1250,00" )')
-cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(2,"Peterson Alves","45","12,01" )')
-cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(3,"Tiago Iork","24","188,90" )')
-cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(4,"Leandro Hasun","58","670,40" )')
-cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(5,"Daniel Oliveira","36","726,70" )')
-cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(6,"Fernando ALmeida","47","5698,65" )')
-cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(7,"Geraldo Rodrigues","28","56,98" )')
-cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(8,"Laercio Santos","71","93,04" )')
-cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(9,"Lucas Morais","48","23,05" )')
-cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(10,"Juliano Silveira","64","81250,00" )')
+#cursor.execute('CREATE TABLE clientes (Id INT, Nome VARCHAR(100), Idade INT (100), Saldo FLOAT(100) );')
+#cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(1,"Roberto Lara","25","1250,00" )')
+#cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(2,"Peterson Alves","45","12,01" )')
+#cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(3,"Tiago Iork","24","188,90" )')
+#cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(4,"Leandro Hasun","58","670,40" )')
+#cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(5,"Daniel Oliveira","36","726,70" )')
+#cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(6,"Fernando ALmeida","47","5698,65" )')
+#cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(7,"Geraldo Rodrigues","28","56,98" )')
+#cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(8,"Laercio Santos","71","93,04" )')
+#cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(9,"Lucas Morais","48","23,05" )')
+#cursor.execute('INSERT INTO clientes(Id,Nome,Idade,Saldo) VALUES(10,"Juliano Silveira","64","81250,00" )')
+
+# Corrigindo o saldo
+cursor.execute('UPDATE clientes SET Saldo = REPLACE(Saldo, ",", ".")')
+
+#6. Consultas e Funções Agregadas
+#Escreva consultas SQL para realizar as seguintes tarefas:
+#a) Selecione o nome e a idade dos clientes com idade superior a 30 anos.
+dados = cursor.execute('SELECT nome,idade FROM clientes WHERE idade >30')
+for clientes in dados:
+    print (clientes)
+
+#b) Calcule o saldo médio dos clientes.
+dados = cursor.execute('SELECT AVG(saldo) AS saldo_medio FROM clientes')
+saldo_medio = cursor.fetchone()[0]
+print("Saldo médio dos clientes",saldo_medio)
+#c) Encontre o cliente com o saldo máximo.
+dados = cursor.execute('SELECT nome, saldo FROM clientes ORDER BY saldo DESC LIMIT 1')
+cliente_saldo_maximo = cursor.fetchone()
+print("Cliente com saldo máximo:", cliente_saldo_maximo) 
+
+#d) Conte quantos clientes têm saldo acima de 1000.
+dados = cursor.execute('SELECT COUNT(*) AS qtd_clientes_saldo_acima_1000 FROM clientes WHERE saldo > 1000')
+qtd_clientes_saldo_acima_1000 = cursor.fetchone()[0]
+print("Quantidade de clientes com saldo acima de 1000:", qtd_clientes_saldo_acima_1000)
+
 conexao.commit()
 conexao.close()
